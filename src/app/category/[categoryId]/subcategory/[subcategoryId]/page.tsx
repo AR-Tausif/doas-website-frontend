@@ -2,13 +2,14 @@ import { Breadcrumb } from "@/components/bredcrumb";
 import { DuaContent } from "@/components/dua-content";
 import { getDuasBySubcategory, getCategory, getSubcategory } from "@/lib/data";
 
-export default function CategoryPage({
+export default async function CategoryPage({
   params,
 }: {
   params: { categoryId: string; subcategoryId: string };
 }) {
-  const categoryId = Number.parseInt(params.categoryId);
-  const subcategoryId = Number.parseInt(params.subcategoryId);
+  const awaitedParams = await params;
+  const categoryId = Number.parseInt(awaitedParams.categoryId);
+  const subcategoryId = Number.parseInt(awaitedParams.subcategoryId);
 
   const category = getCategory(categoryId);
   const subcategory = getSubcategory(categoryId, subcategoryId);
